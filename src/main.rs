@@ -1,12 +1,16 @@
 extern crate mini_gl_fb;
 use mini_gl_fb::glutin::VirtualKeyCode;
 
+const WIDTH: u32 = 320;
+const HEIGHT: u32 = 240;
+const SCALE: u32 = 3;
+
 fn main() {
 	let config = mini_gl_fb::Config {
 		window_title: "Hello world!",
-		window_size: (800.0, 600.0),
+		window_size: ((WIDTH * SCALE) as f64, (HEIGHT * SCALE) as f64),
 		resizable: false,
-		buffer_size: (320, 240),
+		buffer_size: (WIDTH, HEIGHT),
 		.. Default::default()
 		};
     let mut fb = mini_gl_fb::get_fancy(config);
@@ -14,7 +18,7 @@ fn main() {
     let mut noise;
     let mut carry;
     let mut seed = 0xbeefu32;
-    let mut buffer = vec![[255u8, 0, 0, 255]; 320 * 240];
+    let mut buffer = vec![[255u8, 0, 0, 255]; (WIDTH * HEIGHT) as usize];
 
     
 
